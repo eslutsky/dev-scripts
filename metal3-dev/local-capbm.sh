@@ -5,7 +5,7 @@ SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 LOGDIR=${SCRIPTDIR}/logs
 source $SCRIPTDIR/logging.sh
 
-source $SCRIPTDIR/common.sh
+#source $SCRIPTDIR/common.sh
 source $SCRIPTDIR/utils.sh
 
 if ! which yq 2>&1 >/dev/null ; then
@@ -14,7 +14,7 @@ if ! which yq 2>&1 >/dev/null ; then
     exit 1
 fi
 
-capbm_path=$GOPATH/src/github.com/openshift/cluster-api-provider-baremetal
+capbm_path=/home/eslutsky/dev/github/openshift/cluster-api-provider-ovirt
 if [ ! -d $capbm_path ]; then
     echo "Did not find $capbm_path" 1>&2
     exit 1
@@ -23,7 +23,7 @@ fi
 # Stop the machine-api-operator so it does not try to fix the
 # deployment we are going to change.
 $SCRIPTDIR/stop-mao.sh
-
+export OCP_DIR=/home/eslutsky/dev/github/dev-scripts/ws
 OUTDIR=${OCP_DIR}/metal3-dev
 mkdir -p $OUTDIR
 
